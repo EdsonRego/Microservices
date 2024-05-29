@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Collections;
 
 @RestController
 public class UsuarioController {
@@ -42,6 +43,13 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario, BindingResult result){
+
+        if(!usuario.getEmail().isEmpty() && service.porEmail(usuario.getEmail()).isPresent()){
+            return ResponseEntity.badRequest()
+                    .body(Collections
+                            .singletonMap("Mensaje","Ya existe un usuario con este correo electronico!"));
+        }
+
         if(result.hasErrors()){
             return validar(result);
         }
@@ -50,12 +58,20 @@ public class UsuarioController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> editar(@Valid @RequestBody Usuario usuario, BindingResult result,@PathVariable Long id){
+
         if(result.hasErrors()){
             return validar(result);
         }
         Optional<Usuario> o = service.porId(id);
         if(o.isPresent()){
             Usuario usuarioDb = o.get();
+            if(!usuario.getEmail().isEmpty() &&
+                    !usuario.getEmail().equalsIgnoreCase(usuarioDb.getEmail()) &&
+                    service.porEmail(usuario.getEmail()).isPresent()){
+                return ResponseEntity.badRequest()
+                        .body(Collections
+                                .singletonMap("Mensaje","Ya existe un usuario con este correo electronico!"));
+            }
             usuarioDb.setNombre(usuario.getNombre());
             usuarioDb.setEmail(usuario.getEmail());
             usuarioDb.setPassword(usuario.getPassword());
