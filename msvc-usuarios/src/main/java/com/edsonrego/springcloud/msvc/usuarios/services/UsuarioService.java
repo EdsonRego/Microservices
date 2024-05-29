@@ -1,4 +1,4 @@
-package com.edsonrego.springcloud.msvc.usuarios.service;
+package com.edsonrego.springcloud.msvc.usuarios.services;
 
 import com.edsonrego.springcloud.msvc.usuarios.models.entity.Usuario;
 
