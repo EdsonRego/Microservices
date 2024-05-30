@@ -1,5 +1,6 @@
 package com.edsonrego.springcloud.msvc.cursos.msvc.services;
 
+import com.edsonrego.springcloud.msvc.cursos.msvc.clients.UsuarioClientRest;
 import com.edsonrego.springcloud.msvc.cursos.msvc.models.Usuario;
 import com.edsonrego.springcloud.msvc.cursos.msvc.models.entity.Curso;
 import com.edsonrego.springcloud.msvc.cursos.msvc.repositories.CursoRepository;
@@ -15,6 +16,9 @@ public class CursoServiceImpl implements CursoService {
 
     @Autowired
     private CursoRepository repository;
+
+    @Autowired
+    private UsuarioClientRest client;
 
     @Override
     @Transactional(readOnly = true)
