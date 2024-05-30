@@ -1,6 +1,6 @@
 package com.edsonrego.springcloud.msvc.cursos.msvc.controller;
 
-import com.edsonrego.springcloud.msvc.cursos.msvc.entity.Curso;
+import com.edsonrego.springcloud.msvc.cursos.msvc.models.entity.Curso;
 import com.edsonrego.springcloud.msvc.cursos.msvc.services.CursoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
 package com.edsonrego.springcloud.msvc.cursos.msvc.services;
 
-import com.edsonrego.springcloud.msvc.cursos.msvc.entity.Curso;
+import com.edsonrego.springcloud.msvc.cursos.msvc.models.Usuario;
+import com.edsonrego.springcloud.msvc.cursos.msvc.models.entity.Curso;
 import com.edsonrego.springcloud.msvc.cursos.msvc.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,20 @@ public class CursoServiceImpl implements CursoService {
     @Transactional
     public void eliminar(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Usuario> asignarUsuario(Usuario usuario, Long cursoId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Usuario> crearUsuario(Usuario usuario, Long cursoId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Usuario> desasignarUsuario(Usuario usuario, Long cursoId) {
+        return Optional.empty();
     }
 }

@@ -1,6 +1,7 @@
 package com.edsonrego.springcloud.msvc.cursos.msvc.services;
 
-import com.edsonrego.springcloud.msvc.cursos.msvc.entity.Curso;
+import com.edsonrego.springcloud.msvc.cursos.msvc.models.Usuario;
+import com.edsonrego.springcloud.msvc.cursos.msvc.models.entity.Curso;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,4 +11,8 @@ public interface CursoService {
     Optional<Curso> porId(Long id);
     Curso guardar(Curso curso);
     void eliminar(Long id);
+
+    Optional<Usuario> asignarUsuario(Usuario usuario, Long cursoId);
+    Optional<Usuario> crearUsuario(Usuario usuario, Long cursoId);
+    Optional<Usuario> desasignarUsuario(Usuario usuario, Long cursoId);
 }
