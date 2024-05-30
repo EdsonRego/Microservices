@@ -39,6 +39,11 @@ public class UsuarioServiceImpl implements UsuarioService{
         repository.deleteById(id);
     }
 
+    @Override
+    public List<Usuario> listarPorIds(Iterable<Long> ids) {
+        return (List<Usuario>) repository.findAllById(ids);
+    }
+
 //    @Override
 //    public Optional<Usuario> porEmail(String email) {
 //        return repository.findByEmail(email);

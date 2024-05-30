@@ -35,20 +35,9 @@ public class UsuarioController {
         return ResponseEntity.notFound().build();
     }
 
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public Usuario crear(@RequestBody Usuario usuario){
-//        return service.guardar(usuario);
-//    }
-
     @PostMapping
     public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario, BindingResult result){
 
-//        if(!usuario.getEmail().isEmpty() && service.porEmail(usuario.getEmail()).isPresent()){
-//            return ResponseEntity.badRequest()
-//                    .body(Collections
-//                            .singletonMap("Mensaje","Ya existe un usuario con este correo electronico!"));
-//        }
         if(result.hasErrors()){
             return validar(result);
         }
@@ -94,6 +83,11 @@ public class UsuarioController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/usuarios-por-curso")
+    public ResponseEntity<?> obtenerAlumnosPorCurso(@RequestParam List<Long> ids){
+        return ResponseEntity.ok(service.listarPorIds(ids));
     }
 
     private static ResponseEntity<Map<String, String>> validar(BindingResult result) {
