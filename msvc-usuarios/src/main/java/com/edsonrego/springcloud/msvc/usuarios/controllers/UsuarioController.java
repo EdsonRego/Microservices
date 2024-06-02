@@ -45,7 +45,7 @@ public class UsuarioController {
         if(!usuario.getEmail().isEmpty() && service.existePorEmail(usuario.getEmail())){
             return ResponseEntity.badRequest()
                     .body(Collections
-                            .singletonMap("Mensaje","Ya existe un usuario con este correo electronico!"));
+                            .singletonMap("Mensaje","Ya existe!!! un usuario con este email electrónico!"));
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(usuario));
@@ -65,7 +65,7 @@ public class UsuarioController {
                     service.porEmail(usuario.getEmail()).isPresent()){
                 return ResponseEntity.badRequest()
                         .body(Collections
-                                .singletonMap("Mensaje","Ya existe un usuario con este correo electronico!"));
+                                .singletonMap("Mensaje","Ya existe un usuario con este correo electrónico!"));
             }
             usuarioDb.setNombre(usuario.getNombre());
             usuarioDb.setEmail(usuario.getEmail());
